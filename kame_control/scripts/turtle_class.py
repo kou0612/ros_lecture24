@@ -57,13 +57,33 @@ class Turtle1:
            rate.sleep()
         self.set_speed(0.0,0.0) 
    
-                 
+    def move_roll(self, theta, rad):
+        rate = rospy.Rate(50)
+        while (self.pos.theta-rad)**2 > 0.0004:
+           self.set_speed(0.0, theta)
+           rate.sleep()
+        self.set_speed(0.0, 0.0)
+        
     
         
 if __name__ == '__main__':
     turtle1 = Turtle1()
     rospy.loginfo("start")
-    turtle1.move_turtle1(0.2, 0.3, 5.0)
-    turtle1.move_straight(-0.2,1.0)
+    turtle1.move_straight(0.2,1.0)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_roll(0.5, math.pi/2)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_straight(0.2,1.0)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_roll(0.5, math.pi)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_straight(0.2,1.0)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_roll(0.5, -math.pi/2)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_straight(0.2,1.0)
+    turtle1.move_turtle1(0,0,0.5)
+    turtle1.move_roll(0.5, 0)
+    turtle1.move_turtle1(0,0,0.5)
     rospy.loginfo("end")
 
